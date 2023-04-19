@@ -1,0 +1,21 @@
+version: '3.8'
+
+networks:
+  default:
+    name: traefik-default
+
+services:
+  appdaemon:
+    container_name: $COMPOSE_PROJECT_NAME
+    image: hazard/appdaemon-apps:latest
+    environment:
+      - TZ=${TZ}
+      - HA_URL=${HA_URL}
+      - HA_TOKEN=${HA_TOKEN}
+    volumes:
+      - ./volumes/apps:/apps
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.$COMPOSE_PROJECT_NAME.rule=Host(`$DOMAIN`)"
+      - "traefik.http.routers.$COMPOSE_PROJECT_NAME.entrypoints=https"
+      - "traefik.http.routers.$COMPOSE_PROJECT_NAME.tls.certresolver=letsencrypt"
