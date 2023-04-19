@@ -10,7 +10,7 @@ services:
     image: acockburn/appdaemon:latest
     environment:
       - HA_URL=${HA_URL}
-      - HA_TOKEN=${HA_TOKEN}
+      - TOKEN=${HA_TOKEN}
       - DASH_URL=${DOMAIN}
     volumes:
       - ./volumes/conf:/conf
