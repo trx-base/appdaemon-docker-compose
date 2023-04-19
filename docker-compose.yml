@@ -11,7 +11,7 @@ services:
     environment:
       - HA_URL=${HA_URL}
       - TOKEN=${HA_TOKEN}
-      - DASH_URL=${DOMAIN}
+      - DASH_URL=https://${DOMAIN}
     volumes:
       - ./volumes/conf:/conf
     labels:
